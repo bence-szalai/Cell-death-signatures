@@ -1,1 +1,23 @@
-# NAR2019_revision
+## Analysis code for: Signatures of cell death and proliferation in perturbation transcriptomics data - from confounding factor to effective prediction
+**Abstract**
+
+<p style="text-align:justify">Transcriptomics perturbation signatures are valuable data sources for functional genomic studies. They can be used to identify mechanism of action for compounds and to infer functional activity of cellular processes. Linking perturbation signatures to phenotypic studies opens up the possibility to model cellular phenotypes from gene expression data and to predict drugs interfering with the phenotype. By linking perturbation transcriptomics data from the LINCS-L1000 project with cell viability phenotypic information upon genetic (Achilles project) and chemical (CTRP screen) perturbations for more than 90,000 signature - cell viability pairs, we show that cell death signature is a major factor behind perturbation signatures. Analysing this signature revealed transcription factors regulating cell death and proliferation. We use the cell death - signature relationship to predict cell viability from transcriptomics signatures, and identify and validate compounds that induce cell death. We show that cellular toxicity can lead to unexpected similarity of signatures, confounding mechanism of action discovery. Consensus compound signatures predict cell-specific drug sensitivity, even if the signature is not measured in the same cell line and outperform conventional drug-specific features. Our results can help understanding mechanisms behind cell death,  removing confounding factors of transcriptomics perturbation screens and show that expression signatures boost prediction of drug sensitivity.
+
+<p style="text-align:justify">The corresponding article for this project is available on *Nucleic Acids Research*. We also proveide an R Shiny application to browse predicted cell viability values, and to perform predictions on any gene expression data online.
+
+<p style="text-align:justify">You have to clone / dowload the project, and run the different Jupyter Notebooks to reproduce our analysis
+
+##Libraries used
+<p style="text-align:justify">Beside basic scientific computing (NumPy, pandas, SciPy, scikit-learn) and plotting (Matplotlib, seaborn) we used the following libraries:
+
+
+
+##Data download
+
+We used the data from LINCS, CTRP and Achilles for this project.
+
+**cell\_death\_0\_download.ipynb**: downloads / helps to download all the necessary files.
+
+
+ 
+
