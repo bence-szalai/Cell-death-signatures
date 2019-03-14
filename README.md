@@ -21,6 +21,5 @@ We used the data from LINCS, CTRP and Achilles for this project.
 
 **cell\_death\_1\_preprocess.ipynb**: performs data preprocess / matching between the different datasets
 
-
- 
+**cell\_death\_2\_model\_analysis.ipynb**: performs model building (related to Fig.1 of manuscript)
 
