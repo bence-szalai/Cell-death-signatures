@@ -16,7 +16,7 @@ def make_dim_reduc_plot(sig_data,sig_info,color_by='viability',fname=None):
         cmap = sns.cubehelix_palette(8, start=.5, rot=-.75,as_cmap=True)
         points = plt.scatter(sig_data.iloc[:,0],sig_data.iloc[:,1], 
                             c=sig_info['cpd_avg_pv'], s=1, cmap=cmap,marker='.')
-        c=plt.colorbar(points,label='Cell viability')
+        plt.colorbar(points,label='Cell viability')
         r1=scor(sig_info['cpd_avg_pv'],sig_data.iloc[:,0])
         r2=scor(sig_info['cpd_avg_pv'],sig_data.iloc[:,1])
         print('Spearman Rho with X:',r1)
