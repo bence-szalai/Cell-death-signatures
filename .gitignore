@@ -17,3 +17,6 @@ figures/raw/SFig5B.pdf
 figures/raw/SFig5C.pdf
 figures/raw/SFig5D.pdf
 figures/raw/SFig5E.pdf
+*.pdf
+*.pages
+*.png
