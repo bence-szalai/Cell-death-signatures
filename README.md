@@ -12,6 +12,7 @@ You have to clone / dowload the project, and run the different Jupyter Notebooks
 Beside basic scientific computing (NumPy, pandas, SciPy, scikit-learn) and plotting (Matplotlib, seaborn) we used the following libraries:
 
 1. [cmapPy](https://clue.io/cmapPy/index.html) to access Connectivity Map Resources
+2. [colormap](https://pypi.org/project/colormap/) for some coloring applications
 
 **Data download**
 
@@ -22,4 +23,5 @@ We used the data from LINCS, CTRP and Achilles for this project.
 **cell\_death\_1\_preprocess.ipynb**: performs data preprocess / matching between the different datasets
 
 **cell\_death\_2\_model\_analysis.ipynb**: performs model building (related to Fig.1 of manuscript)
+
 
