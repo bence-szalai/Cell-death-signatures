@@ -20,3 +20,6 @@ figures/raw/SFig5E.pdf
 *.pdf
 *.pages
 *.png
+.Rproj.user
+*.Rproj
+ShinyCellDeathSignatures/data
