@@ -26,3 +26,4 @@ figures/raw/SFig5E.pdf
 *.Rproj
 *.html
 ShinyCellDeathSignatures/data
+.Rhistory
