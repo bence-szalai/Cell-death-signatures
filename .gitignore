@@ -26,3 +26,4 @@ code/.ipynb_checkpoints/cell_death_3_functional_analysis-checkpoint.ipynb
 code/.ipynb_checkpoints/cell_death_5_prediction-checkpoint.ipynb
 results/model/final_models/achilles.pkl
 results/model/final_models/ctrp.pkl
+*.xlsx
