@@ -29,3 +29,5 @@ results/model/final_models/ctrp.pkl
 *.xlsx
 code/.ipynb_checkpoints/cell_death_4_moa-checkpoint.ipynb
 code/proba_affy.py
+code/proba_division.py
+code/proba_general.py
