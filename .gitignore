@@ -27,3 +27,6 @@ code/.ipynb_checkpoints/cell_death_5_prediction-checkpoint.ipynb
 results/model/final_models/achilles.pkl
 results/model/final_models/ctrp.pkl
 *.xlsx
+code/.ipynb_checkpoints/cell_death_4_moa-checkpoint.ipynb
+code/proba_affy.py
+*.py
