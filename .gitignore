@@ -32,3 +32,4 @@ code/proba_affy.py
 code/proba_division.py
 code/proba_general.py
 data/gCSI/compareDrugScreens_current.tar.gz
+*.key

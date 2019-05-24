@@ -11,11 +11,12 @@ def make_dim_reduc_plot(sig_data,sig_info,color_by='viability',fname=None):
     """makes a plot of the 2 dimensional sig data, points are colored by
     {'viability','cell_id','pert_id','pert_itime','bin_viability'}
     if fname is given, saves the plot as a pdf to ../figures/"""
-    plt.figure(dpi=600,figsize=(3.0,2.0))
+    plt.figure(dpi=600,figsize=(3.6,2.4))
     if color_by=='viability':
         cmap = sns.cubehelix_palette(8, start=.5, rot=-.75,as_cmap=True)
         points = plt.scatter(sig_data.iloc[:,0],sig_data.iloc[:,1], 
-                            c=sig_info['cpd_avg_pv'], s=1, cmap=cmap,marker='.')
+                            c=sig_info['cpd_avg_pv'], s=1, cmap=cmap,marker='.',
+                            rasterized=True)
         plt.colorbar(points,label='Cell viability')
         r1=scor(sig_info['cpd_avg_pv'],sig_data.iloc[:,0])
         r2=scor(sig_info['cpd_avg_pv'],sig_data.iloc[:,1])
@@ -37,11 +38,11 @@ def make_dim_reduc_plot(sig_data,sig_info,color_by='viability',fname=None):
         for cat in categories:
             fil=sig_info[color_by]==cat
             plt.scatter(sig_data[fil].iloc[:,0],sig_data[fil].iloc[:,1],s=1,marker='.')
-        plt.legend(leg,fontsize=5)
-    plt.xlabel(sig_data.columns[0],size=7)
-    plt.ylabel(sig_data.columns[1],size=7)
-    plt.xticks(size=5)
-    plt.yticks(size=5)
+        plt.legend(leg,fontsize=7)
+    plt.xlabel(sig_data.columns[0],size=10)
+    plt.ylabel(sig_data.columns[1],size=10)
+    plt.xticks(size=7)
+    plt.yticks(size=7)
     plt.tight_layout()
     if fname:
         plt.savefig('../figures/raw/%s.pdf' % fname)
