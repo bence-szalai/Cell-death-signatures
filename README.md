@@ -13,6 +13,7 @@ Beside basic scientific computing (NumPy, pandas, SciPy, scikit-learn) and plott
 
 1. [cmapPy](https://clue.io/cmapPy/index.html) to access Connectivity Map Resources
 2. [colormap](https://pypi.org/project/colormap/) for some coloring applications
+3. [adjustText](https://github.com/Phlya/adjustText) for text adjustment in plots
 
 **Data download**
 
