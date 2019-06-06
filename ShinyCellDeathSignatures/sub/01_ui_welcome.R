@@ -5,6 +5,6 @@ tabPanel(
     includeMarkdown("inst/landingpage_sidebar.md")
   ),
   mainPanel(
-    includeMarkdown("inst/landingpage.md")
+    includeMarkdown("inst/landingpage_body.md")
   )
 )

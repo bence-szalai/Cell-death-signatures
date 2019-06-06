@@ -8,14 +8,23 @@ output$measured_df = DT::renderDataTable({
   if (selected_resource_measured() == "achilles") {
     achilles_measured %>%
       mutate_if(is.double, signif, 3) %>%
-      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
-                    filter = "top", selection = list(target = "none"))
+      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T,
+                                                 stateSave = TRUE), 
+                    filter = "top", selection = list(target = "none",
+                                                     stateSave = TRUE))
   } else if (selected_resource_measured() == "ctrp") {
     ctrp_measured %>%
       mutate_if(is.double, signif, 3) %>%
-      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
+      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T,
+                                                 stateSave = TRUE), 
                     filter = "top", selection = list(target = "none"))
   }
+})
+
+measured_df_filtered = observeEvent(input$measured_df_state, {
+  print(input$measured_df_search_columns)
+  print(input)
+  input$measured_df_search_columns
 })
 
 output$download_achilles_measured = downloadHandler(
@@ -41,7 +50,8 @@ output$histogram_measured = renderPlotly({
     p = achilles_measured %>%
       ggplot(aes(x=shRNA_abundance)) +
       geom_histogram(color="white") +
-      my_theme()
+      my_theme() +
+      geom_rug(data = achilles_measured %>% slice(1:50))
   } else if (selected_resource_measured() == "ctrp") {
     p = ctrp_measured %>% 
       ggplot(aes(x=cell_viability)) +
