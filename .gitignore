@@ -23,7 +23,6 @@ figures/raw/SFig5E.pdf
 .Rproj.user
 
 # Shiny related files/paths
-*.Rproj
 *.html
 ShinyCellDeathSignatures/data
 .Rhistory
