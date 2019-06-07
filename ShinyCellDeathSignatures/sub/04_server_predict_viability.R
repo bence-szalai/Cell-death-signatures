@@ -94,26 +94,44 @@ output$pred_matrix = DT::renderDataTable({
 
 output$bar_plot = renderPlotly({
   p = predictions() %>%
-    mutate(label = str_trunc(sample, 10)) %>%
+    mutate(label = str_trunc(sample, 5, ellipsis = "")) %>%
     arrange(sample) %>%
     mutate(sample = as_factor(sample)) %>%
-    ggplot(aes(x=label, y=Viability, label=sample)) +
-    geom_col() +
+    ggplot(aes(x=fct_reorder(label, Viability), y=Viability, label=sample)) +
+    geom_segment(aes(x=fct_reorder(label, Viability), xend=fct_reorder(label, Viability), y=0, yend=Viability), color="grey") +
+    geom_point(size=1) +
     facet_wrap(~resource, scales="free_x") +
     coord_flip() +
     my_theme() +
+    theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
     theme(axis.title.y = element_blank())
   
   ggplotly(p, tooltip = c("sample", "Viability"))
 })
 
 output$cor_plot = renderPlotly({
-  predictions() %>%
-    spread(resource, Viability) %>%
+  df = predictions() %>%
+    spread(resource, Viability)
+  
+  r = cor.test(df$Achilles, df$CTRP) %>%
+    tidy() %>%
+    transmute(label = str_c("r = ", signif(estimate,3), 
+                            " (p = ",signif(p.value, 3), ")")) %>%
+    mutate(Achilles = mean(df$Achilles), CTRP = max(df$CTRP))
+  
+  df %>%
     ggplot(aes(x=Achilles, y=CTRP, label=sample)) +
     geom_point() +
     my_theme() +
-    geom_smooth(method = "lm")
+    geom_smooth(method = "lm") +
+    # geom_text(data = r, aes(label = label), 
+    #           vjust = "inward", hjust = "inward") +
+    labs(x="Viability predictions by Achilles-model",
+         y="Viability predictions by CTRP-model",
+         subtitle = r$label,
+         title = r$label,
+         caption = "Correlation of predicted viability scores")
+
 })
 
 output$download_pred_via = downloadHandler(

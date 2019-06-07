@@ -5,10 +5,10 @@
 # )
 
 output$predicted_df = DT::renderDataTable({
-    pred %>%
+  pred %>%
     mutate_if(is.double, signif, 3) %>%
-      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
-                    filter = "top", selection = list(target = "none"))
+    DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
+                  filter = "top", selection = list(target = "none"))
 })
 
 output$download_predicted_achilles_ctrp = downloadHandler(
@@ -23,7 +23,11 @@ output$download_predicted_achilles_ctrp = downloadHandler(
 output$histogram_predicted = renderPlotly({
   pred %>%
     gather(resource, viability, Achilles_prediction, CTRP_prediction) %>%
-    ggplot(aes(x=viability, fill=resource)) +
-    geom_histogram(color="white", alpha=0.6) +
-    my_theme()
+    mutate(resource = str_remove(string = resource,pattern = "_prediction")) %>%
+    ggplot(aes(x=viability)) +
+    geom_histogram(color="white") +
+    my_theme() +
+    facet_wrap(~resource, scales="free") +
+    theme(legend.position = "none") +
+    labs(x="Viability", y="Count")
 })
