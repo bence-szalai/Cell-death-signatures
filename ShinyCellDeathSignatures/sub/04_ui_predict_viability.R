@@ -3,6 +3,8 @@ tabPanel(
   icon = icon("line-chart"),
   sidebarPanel(
     includeMarkdown("inst/tab3_sidebar.md"),
+    switchInput(inputId = "take_example_data", label = "Explore example data",
+                onLabel = "Yes", offLabel = "No", value=TRUE),
     fileInput("user_input", label=NULL),
     actionButton("submit", label="Submit",
                  icon=icon("send")),

@@ -13,37 +13,66 @@
 #   return(df)
 # })
 
+# data
+gex = reactive({
+  if (input$take_example_data == F) {
+    shinyjs::enable("user_input")
+    inFile = input$user_input
+    if (is.null(inFile)){
+      return(NULL)
+    }
+    read_csv(inFile$datapath)
+  } else {
+    shinyjs::disable("user_input")
+    example_data 
+  }
+})
+
 output$gex_matrix = DT::renderDataTable({
-  gex %>% 
-    mutate_if(is.double, signif, 3) %>%
-    DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
-                  filter = "top", selection = list(target = "none"))
+  if (!is.null(gex())) {
+    gex() %>% 
+      mutate_if(is.double, signif, 3) %>%
+      DT::datatable(., escape = F, option = list(scrollX = TRUE, autoWidth=T), 
+                    filter = "top", selection = list(target = "none")) 
+  }
 })
 
 predictions = eventReactive(input$submit, {
   design = tribble(
     ~resource, ~model, ~gex,
-    "Achilles", achilles_model, gex,
-    "CTRP", ctrp_model, gex)
+    "Achilles", achilles_model, gex(),
+    "CTRP", ctrp_model, gex())
   
   predictions = design %>%
     transmute(resource, pred = pmap(., .f = function(gex, model, ...) {
+
+      # extract intersect of linear model
+      b = model %>% filter(gene == "intercept") %>% pull(coefficient)
+      
+      # subset expression matrix to genes which are available in linear model
       gex_mapped = semi_join(gex, model,by="gene") %>%
         arrange(gene) %>%
         column_to_rownames("gene") %>%
         as.matrix()
       
+      # subset linear model to genes which are available in expression matrix
       model_mapped = semi_join(model, gex, by="gene") %>%
         arrange(gene) %>%
         column_to_rownames("gene") %>%
         as.matrix()
  
+      # check whether only common genes are in expression matrix and model and 
+      # if they are in the same order
       stopifnot(rownames(gex_mapped) == rownames(model_mapped))
+      
+      # prediction of viabilities from gene expression
       t(gex_mapped) %*% model_mapped %>%
         data.frame(check.names = F, stringsAsFactors = F) %>%
         rownames_to_column("sample") %>%
         as_tibble() %>%
-        rename(Viability = coefficient)
+        rename(Viability = coefficient) %>%
+        # add intercept of linear model
+        mutate(Viability = Viability + b)
     })) %>%
     unnest(pred)
   

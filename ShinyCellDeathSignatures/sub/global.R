@@ -8,34 +8,39 @@ library(plotly)
 
 source("sub/my_ggplot_themes.R")
 
-#### Load measured data ####
-achilles_measured = read_csv("data/matched/achilles_matched.csv") %>%
-  mutate_if(is.character, as.factor) %>%
-  mutate(pert_itime = ordered(pert_itime,
-                              levels = c("6 h", "24 h", "48 h", "72 h", "96 h",
-                                         "120 h", "144 h", "168 h")))
-ctrp_measured = read_csv("data/matched/ctrp_matched.csv") %>%
-  mutate_if(is.character, as.factor) %>%
-  mutate(pert_itime = ordered(pert_itime,
-                              levels = c("3 h", "6 h", "24 h", "48 h")))
+options(shiny.maxRequestSize=30*1024^2)
 
+# #### Load measured data ####
+# achilles_measured = read_csv("data/matched/achilles_matched.csv") %>%
+#   mutate_if(is.character, as.factor) %>%
+#   mutate(pert_itime = ordered(pert_itime,
+#                               levels = c("6 h", "24 h", "48 h", "72 h", "96 h",
+#                                          "120 h", "144 h", "168 h")))
+# ctrp_measured = read_csv("data/matched/ctrp_matched.csv") %>%
+#   mutate_if(is.character, as.factor) %>%
+#   mutate(pert_itime = ordered(pert_itime,
+#                               levels = c("3 h", "6 h", "24 h", "48 h")))
+# 
 # #### Load predicted data ####
-pred = read_csv("data/predictions/merged_pred.csv") %>%
-  mutate_if(is.character, as.factor) %>%
-  mutate(pert_itime = ordered(pert_itime,
-                              levels = c("1 h","2 h", "3 h", "4 h", "6 h",
-                                         "24 h", "48 h", "72 h", "96 h",
-                                         "120 h", "144 h", "168 h")))
+# pred = read_csv("data/predictions/merged_pred.csv") %>%
+#   mutate_if(is.character, as.factor) %>%
+#   mutate(pert_itime = ordered(pert_itime,
+#                               levels = c("1 h","2 h", "3 h", "4 h", "6 h",
+#                                          "24 h", "48 h", "72 h", "96 h",
+#                                          "120 h", "144 h", "168 h")))
  
 #### Load viability ~ expression models #### 
 achilles_model = read_csv("data/models/achilles_model.csv") %>%
+  mutate(pr_gene_symbol = case_when(pr_gene_id == "INTERCEPT" ~ "intercept",
+                                    TRUE ~ pr_gene_symbol)) %>%
   select(gene = pr_gene_symbol, coefficient)
 ctrp_model = read_csv("data/models/ctrp_model.csv") %>%
+  mutate(pr_gene_symbol = case_when(pr_gene_id == "INTERCEPT" ~ "intercept",
+                                    TRUE ~ pr_gene_symbol)) %>%
   select(gene = pr_gene_symbol, coefficient)
 
 # load example data
-gex = read_csv("data/misc/example_data.csv") %>%
-  rename(gene = X1)
+example_data = read_csv("data/misc/example_data.csv")
 
 #### Load color palette ####
 rwth_colors_df = get(load("data/misc/rwth_colors.rda")) 
