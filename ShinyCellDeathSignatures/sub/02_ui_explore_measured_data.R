@@ -1,6 +1,6 @@
 tabPanel(
-  title = "Tab2",
-  icon = icon("database"),
+  title = "Measured cell viability",
+  icon = icon("microscope"),
   sidebarPanel(
     includeMarkdown("inst/tab1_sidebar.md"),
     radioGroupButtons(inputId = "select_resource_measured",
@@ -16,8 +16,16 @@ tabPanel(
   mainPanel(
     includeMarkdown("inst/tab1_body.md"),
     DT::dataTableOutput("measured_df") %>% withSpinner(),
+    br(),
     plotlyOutput("histogram_measured"),
-    plotlyOutput("pie_achilles_measured"),
-    plotlyOutput("pie_ctrp_measured")
+    br(),
+    fluidRow(
+      column(
+        6, plotlyOutput("pie_measured_cellline")
+      ),
+      column(
+        6, plotlyOutput("pie_measured_perttime")
+      )
+    )
   )
 )
