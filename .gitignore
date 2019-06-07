@@ -26,3 +26,9 @@ figures/raw/SFig5E.pdf
 *.html
 ShinyCellDeathSignatures/data
 .Rhistory
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
