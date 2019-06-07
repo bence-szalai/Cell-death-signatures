@@ -1,5 +1,5 @@
 tabPanel(
-  title = "Tab1",
+  title = "Welcome",
   icon = icon("home"),
   sidebarPanel(
     includeMarkdown("inst/landingpage_sidebar.md")

@@ -1,6 +1,6 @@
 tabPanel(
-  title = "Tab4",
-  icon = icon("line-chart"),
+  title = "Prediction of cell viability",
+  icon = icon("upload"),
   sidebarPanel(
     includeMarkdown("inst/tab3_sidebar.md"),
     switchInput(inputId = "take_example_data", label = "Explore example data",
@@ -23,7 +23,9 @@ tabPanel(
         DT::dataTableOutput("pred_matrix") %>% withSpinner()
       )
     ),
+    br(),
     plotlyOutput("bar_plot"),
+    br(),
     plotlyOutput("cor_plot")
   )
 )
