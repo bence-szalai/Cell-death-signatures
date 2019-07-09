@@ -8,6 +8,7 @@ library(plotly)
 library(broom)
 
 source("sub/my_ggplot_themes.R")
+theme_set(theme_cowplot())
 
 options(shiny.maxRequestSize=30*1024^2)
 
