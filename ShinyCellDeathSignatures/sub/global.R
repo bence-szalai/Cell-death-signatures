@@ -65,4 +65,3 @@ parse_column_filtering = function(x) {
   scan(text = gsub('[][]', '', gsub(" ... ", ",", x, fixed = TRUE)), 
        sep = ",", what = "", quiet = TRUE)
 }
-
