@@ -35,3 +35,5 @@ code/proba_general.py
 data/gCSI/compareDrugScreens_current.tar.gz
 *.key
 *.LST
+code/.ipynb_checkpoints/cell_death_6_ML-checkpoint.ipynb
+code/.ipynb_checkpoints/cell_death_6_ML-checkpoint.ipynb
