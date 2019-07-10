@@ -13,14 +13,14 @@ ui = function(request) {
     navbarPage(
       id = "menu", 
       title = div(img(src="logo_saezlab.png", width="25", height="25"),
-                  "Cell-death signature-App"),
-      windowTitle = "CKD-App",
+                  "CEVIChE"),
+      windowTitle = "CEVIChE",
       collapsible=T,
       source("sub/01_ui_welcome.R")$value,
       source("sub/02_ui_explore_measured_data.R")$value,
       source("sub/03_ui_explore_predicted_data.R")$value,
       source("sub/04_ui_predict_viability.R")$value,
-      footer = column(12, align="center", "Cell-death signature-App 2019")
+      footer = column(12, align="center", "CEVIChE App 2019")
       ) # close navbarPage
     ) # close fluidPage
   )
