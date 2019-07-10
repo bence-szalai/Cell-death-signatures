@@ -8,7 +8,18 @@ tabPanel(
     fileInput("user_input", label=NULL),
     actionButton("submit", label="Submit",
                  icon=icon("send")),
-    downloadButton("download_pred_via", "Download")
+    hr(),
+    hidden(
+      p(id ="select_model_label", "Order predictions for ..."),
+      radioGroupButtons(
+        inputId = "select_model",
+        choices = c("Achilles", "CTRP")) 
+    ),
+    hr(),
+    downloadButton("download_pred_via", "Download predictions"),
+    hr(),
+    downloadButton("download_achilles_model", "Download Achilles-model"),
+    downloadButton("download_ctrp_model", "Download CTRP-model")
   ),
   mainPanel(
     includeMarkdown("inst/tab3_body.md"),
