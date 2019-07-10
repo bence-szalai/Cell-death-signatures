@@ -22,6 +22,7 @@ output$measured_df = DT::renderDataTable({
 })
 
 measured_df_filtered = eventReactive(input$measured_df_state, {
+  print(input$measured_df_search_columns)
   s = input$measured_df_search_columns %>% 
     na_if("") %>%
     parse_column_filtering()
@@ -49,7 +50,6 @@ output$download_ctrp_measured = downloadHandler(
 # histogram showing the measured cell viabilities for either achilles or ctrp
 output$histogram_measured = renderPlotly({
   if (selected_resource_measured() == "achilles") {
-    print(measured_df_filtered())
     data_rug = achilles_measured %>%
       filter(if (is.na(measured_df_filtered()[1])) TRUE else sig_id %in% measured_df_filtered()[1]) %>%
       filter(if (is.na(measured_df_filtered()[2])) TRUE else pert_id %in% measured_df_filtered()[2]) %>%
@@ -60,7 +60,6 @@ output$histogram_measured = renderPlotly({
     
 
     if (nrow(data_rug) <= 200) {
-      print("hi")
       p = achilles_measured %>%
         ggplot(aes(x=shRNA_abundance)) +
         geom_histogram(color="white") +
@@ -76,7 +75,6 @@ output$histogram_measured = renderPlotly({
         labs(x="shRNA abundance", y="Count")
     }
   } else if (selected_resource_measured() == "ctrp") {
-    print(measured_df_filtered())
     data_rug = ctrp_measured %>%
       filter(if (is.na(measured_df_filtered()[1])) TRUE else sig_id %in% measured_df_filtered()[1]) %>%
       filter(if (is.na(measured_df_filtered()[2])) TRUE else pert_id %in% measured_df_filtered()[2]) %>%
