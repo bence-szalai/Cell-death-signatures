@@ -28,6 +28,12 @@ gex = reactive({
   }
 })
 
+selected_model = eventReactive(
+  input$select_model, {
+    input$select_model
+  }
+)
+
 output$gex_matrix = DT::renderDataTable({
   if (!is.null(gex())) {
     gex() %>% 
@@ -82,6 +88,8 @@ predictions = eventReactive(input$submit, {
 observeEvent(input$submit, {
   updateTabsetPanel(session, "tab_panel",
                     selected = "tab_viability")
+  show("select_model")
+  show("select_model_label")
 })
 
 output$pred_matrix = DT::renderDataTable({
@@ -93,12 +101,21 @@ output$pred_matrix = DT::renderDataTable({
 })
 
 output$bar_plot = renderPlotly({
-  p = predictions() %>%
-    mutate(label = str_trunc(sample, 5, ellipsis = "")) %>%
-    arrange(sample) %>%
-    mutate(sample = as_factor(sample)) %>%
-    ggplot(aes(x=fct_reorder(label, Viability), y=Viability, label=sample)) +
-    geom_segment(aes(x=fct_reorder(label, Viability), xend=fct_reorder(label, Viability), y=0, yend=Viability), color="grey") +
+  if (selected_model() == "Achilles") {
+    i = predictions() %>%
+      mutate(label = str_trunc(sample, 5, ellipsis = "")) %>%
+      arrange(resource, Viability) %>%
+      mutate(label = as_factor(label))
+  } else if (selected_model() == "CTRP") {
+    i = predictions() %>%
+      mutate(label = str_trunc(sample, 5, ellipsis = "")) %>%
+      arrange(desc(resource), Viability) %>%
+      mutate(label = as_factor(label))
+  }
+  p = i %>%
+    ggplot(aes(x=label,y=Viability, label=sample)) +
+    # geom_segment(aes(x=fct_reorder(label, Viability), xend=fct_reorder(label, Viability), y=0, yend=Viability), color="grey") +
+    geom_segment(aes(x=label, xend=label, y=0, yend=Viability), color="grey") +
     geom_point(size=1) +
     facet_wrap(~resource, scales="free_x") +
     coord_flip() +
@@ -141,6 +158,24 @@ output$download_pred_via = downloadHandler(
   content = function(file) {
     predictions() %>%
       spread(resource, Viability) %>%
+      write_csv(., file)
+    })
+
+output$download_achilles_model = downloadHandler(
+  filename = function() {
+    "achilles_model.csv"
+  },
+  content = function(file) {
+    achilles_model %>%
+      write_csv(., file)
+  })
+
+output$download_ctrp_model = downloadHandler(
+  filename = function() {
+    "ctrp_model.csv"
+  },
+  content = function(file) {
+    ctrp_model %>%
       write_csv(., file)
   })
 
