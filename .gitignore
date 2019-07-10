@@ -22,6 +22,21 @@ figures/raw/SFig5E.pdf
 *.pdf
 *.pages
 *.png
+
+.Rproj.user
+
+# Shiny related files/paths
+*.html
+ShinyCellDeathSignatures/data
+.Rhistory
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
 *.tsv
 code/.ipynb_checkpoints/cell_death_3_functional_analysis-checkpoint.ipynb
 code/.ipynb_checkpoints/cell_death_5_prediction-checkpoint.ipynb
@@ -35,3 +50,4 @@ code/proba_general.py
 data/gCSI/compareDrugScreens_current.tar.gz
 *.key
 *.LST
+
