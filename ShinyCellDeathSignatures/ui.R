@@ -9,7 +9,7 @@ ui = function(request) {
       ),
       div(id = "loading-content", "Loading...",
           img(src = "ajax-loader-bar.gif")),
-    #tags$head(includeScript("google-analytics.js")),
+    tags$head(includeScript("google-analytics.js")),
     navbarPage(
       id = "menu", 
       title = div(img(src="logo_saezlab.png", width="25", height="25"),
