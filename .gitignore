@@ -1,4 +1,5 @@
 
+
 .DS_Store
 code/.ipynb_checkpoints/cell_death_0_download-checkpoint.ipynb
 *.gct
@@ -29,12 +30,13 @@ figures/raw/SFig5E.pdf
 *.html
 ShinyCellDeathSignatures/data
 .Rhistory
+*/rsconnect/
 
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
+
 
 
 *.tsv
@@ -50,4 +52,7 @@ code/proba_general.py
 data/gCSI/compareDrugScreens_current.tar.gz
 *.key
 *.LST
+
+
+Icon
 
