@@ -54,3 +54,4 @@ data/gCSI/compareDrugScreens_current.tar.gz
 *.key
 *.LST
 
+code/try_merged_similarity.py
