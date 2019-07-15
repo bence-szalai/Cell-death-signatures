@@ -16,6 +16,7 @@ drug_ids=list(set(data.index)&set(anno.index))
 data=data.loc[drug_ids,:]
 anno=anno.loc[drug_ids,:]
 pathways=list(set(anno['TARGET_PATHWAY']))
+pathways.sort()
 model=TSNE(n_components=2,random_state=19890904,method='exact',learning_rate=80,perplexity=20)
 data_tsne=model.fit_transform(data)
 data_tsne=pd.DataFrame(data_tsne,index=data.index,columns=range(2))
@@ -24,7 +25,7 @@ clustering['Silhouette score']=silhouette_samples(data_tsne,anno.loc[data.index,
 clustering['TARGET_PATHWAY']=anno.loc[data.index,'TARGET_PATHWAY']
 clustering=clustering.sort_values('Silhouette score',ascending=False)
 clustering=clustering.drop_duplicates('TARGET_PATHWAY')
-f,ax=plt.subplots(1,1)
+f,ax=plt.subplots(1,1,dpi=600,figsize=(2,2))
 sns.set_palette('GnBu',21)
 for j in range(len(pathways)):
         pw=pathways[j]
@@ -33,14 +34,12 @@ for j in range(len(pathways)):
         plt.plot(data_tsne.loc[indexes,0],data_tsne.loc[indexes,1],'o')
         fil=np.in1d(clustering.index,indexes)
         for i in indexes:
-            plt.text(data_tsne.loc[i,0],data_tsne.loc[i,1],anno.loc[i,'DRUG_NAME'],color= 'k',ha=np.random.choice(['center','left','right']),size=20)
+            plt.text(data_tsne.loc[i,0],data_tsne.loc[i,1],anno.loc[i,'DRUG_NAME'],color= 'k',ha=np.random.choice(['center','left','right']),size=10)
 
-box = ax.get_position()
-ax.set_position([box.x0, box.y0, box.width * 0.75, box.height])
-ax.legend(pathways,loc='center left', bbox_to_anchor=(1, 0.5),prop={'size': 5})    
-plt.xticks(size=7)
-plt.yticks(size=7)
-plt.xlabel('TSNE1',size=10)
-plt.ylabel('TSNE2',size=10)
+ 
+plt.xticks(size=5)
+plt.yticks(size=5)
+plt.xlabel('TSNE1',size=7)
+plt.ylabel('TSNE2',size=7)
 plt.tight_layout()
 plt.show()
