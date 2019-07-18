@@ -25,4 +25,14 @@ We used the data from LINCS, CTRP and Achilles for this project.
 
 **cell\_death\_2\_model\_analysis.ipynb**: performs model building (related to Fig.1 of manuscript)
 
+**cell\_death\_3\_functional\_analysis.ipynb**: pathway enrichmnets and associations with drug response (related to Fig.2 of manuscript)
 
+**cell\_death\_4\_moa.ipynb**: mechanism of action inference
+
+**cell\_death\_5\_prediction.ipynb**: predicting cell viability for the whole LINCS-L1000 dataset
+
+**cell\_death\_6\_ML.ipynb**: Machine Learning prediction of drug sensitivity
+
+**cell\_death\_7\_additional.ipynb**: additional analysis (not in manuscript)
+
+**cell\_death\_8\_figures.ipynb**: recreating figures
