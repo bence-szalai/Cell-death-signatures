@@ -20,6 +20,7 @@ source("sub/my_ggplot_themes.R")
 theme_set(theme_cowplot())
 
 options(shiny.maxRequestSize=30*1024^2)
+options(rsconnect.max.bundle.size=8589934592)
 
 #### Load measured data ####
 achilles_measured = read_csv("data/matched/achilles_matched.csv") %>%
