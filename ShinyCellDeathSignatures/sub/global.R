@@ -2,10 +2,19 @@ library(shiny)
 library(shinyWidgets)
 library(shinyjs)
 library(shinycssloaders)
-library(tidyverse)
-library(cowplot)
+library(dplyr)
+library(tidyr)
+library(tibble)
+library(readr)
+library(purrr)
+library(stringr)
+library(forcats)
 library(plotly)
 library(broom)
+library(markdown)
+library(lobstr)
+library(shinyhelper)
+library(cowplot)
 
 source("sub/my_ggplot_themes.R")
 theme_set(theme_cowplot())
@@ -23,13 +32,13 @@ ctrp_measured = read_csv("data/matched/ctrp_matched.csv") %>%
   mutate(pert_itime = ordered(pert_itime,
                               levels = c("3 h", "6 h", "24 h", "48 h")))
 
-#### Load predicted data ####
-pred = read_csv("data/predictions/merged_pred.csv") %>%
-  mutate_if(is.character, as.factor) %>%
-  mutate(pert_itime = ordered(pert_itime,
-                              levels = c("1 h","2 h", "3 h", "4 h", "6 h",
-                                         "24 h", "48 h", "72 h", "96 h",
-                                         "120 h", "144 h", "168 h")))
+# #### Load predicted data ####
+# pred = read_csv("data/predictions/merged_pred.csv") %>%
+#   mutate_if(is.character, as.factor) %>%
+#   mutate(pert_itime = ordered(pert_itime,
+#                               levels = c("1 h","2 h", "3 h", "4 h", "6 h",
+#                                          "24 h", "48 h", "72 h", "96 h",
+#                                          "120 h", "144 h", "168 h")))
  
 #### Load viability ~ expression models #### 
 achilles_model = read_csv("data/models/achilles_model.csv") %>%
