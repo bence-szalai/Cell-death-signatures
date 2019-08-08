@@ -3,4 +3,4 @@
 
 
 **Workflow**:
-<img src="../www/workflow.pdf" width="100%", align="middle">.
+<img src="../www/app_figure.png" width="100%", align="middle">.
