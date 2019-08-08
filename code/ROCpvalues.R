@@ -26,3 +26,5 @@ p_gt_achilles=roc.test(response=data$DELTA,predictor1 = data$Achilles_prediction
                          predictor2 = data$area_under_curve)
 p_gt_ctrp=roc.test(response=data$DELTA,predictor1 = data$CTRP_prediction,
                          predictor2 = data$area_under_curve)
+
+

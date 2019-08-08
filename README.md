@@ -15,6 +15,14 @@ Beside basic scientific computing (NumPy, pandas, SciPy, scikit-learn) and plott
 2. [colormap](https://pypi.org/project/colormap/) for some coloring applications
 3. [adjustText](https://github.com/Phlya/adjustText) for text adjustment in plots
 
+We also use some R packages:
+
+1. [viper](https://www.bioconductor.org/packages/release/bioc/html/viper.html) for regulon enrichment
+2. [biomaRt](https://bioconductor.org/packages/release/bioc/html/biomaRt.html) for translating between gene IDs
+3. [msigdbr](https://cran.r-project.org/web/packages/msigdbr/) for GO and KEGG
+4. [piano](https://bioconductor.org/packages/release/bioc/html/piano.html) for enrichment analysis
+5. [pROC](https://cran.r-project.org/web/packages/pROC/index.html) statistical analysis of ROC curves
+
 **Data download**
 
 We used the data from LINCS, CTRP and Achilles for this project.
@@ -25,4 +33,14 @@ We used the data from LINCS, CTRP and Achilles for this project.
 
 **cell\_death\_2\_model\_analysis.ipynb**: performs model building (related to Fig.1 of manuscript)
 
+**cell\_death\_3\_functional\_analysis.ipynb**: pathway enrichmnets and associations with drug response (related to Fig.2 of manuscript)
 
+**cell\_death\_4\_moa.ipynb**: mechanism of action inference
+
+**cell\_death\_5\_prediction.ipynb**: predicting cell viability for the whole LINCS-L1000 dataset
+
+**cell\_death\_6\_ML.ipynb**: Machine Learning prediction of drug sensitivity
+
+**cell\_death\_7\_additional.ipynb**: additional analysis (not in manuscript)
+
+**cell\_death\_8\_figures.ipynb**: recreating figures
