@@ -4,10 +4,20 @@ tabPanel(
   sidebarPanel(
     includeMarkdown("inst/tab3_sidebar.md"),
     switchInput(inputId = "take_example_data", label = "Explore example data",
-                onLabel = "Yes", offLabel = "No", value=TRUE),
-    fileInput("user_input", label=NULL),
+                onLabel = "Yes", offLabel = "No", value=TRUE) %>%
+      helper(icon = "question",
+             size= "m",
+             colour = "black",
+             type = "markdown",
+             content = "example_data"),
+    fileInput("user_input", label="Upload gene expression matrix") %>%
+      helper(icon = "question",
+             size= "m",
+             colour = "black",
+             type = "markdown",
+             content = "file_upload"),
     actionButton("submit", label="Submit",
-                 icon=icon("send")),
+                 icon=icon("send")) ,
     hr(),
     hidden(
       p(id ="select_model_label", "Order predictions for ..."),

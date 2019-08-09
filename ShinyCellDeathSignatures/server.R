@@ -6,4 +6,5 @@ server = function(input, output, session) {
 
   # hide the loading message
   hide("loading-content", TRUE, "fade")  
+  observe_helpers(withMathJax = TRUE)
 }

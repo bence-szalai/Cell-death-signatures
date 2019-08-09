@@ -1,18 +1,3 @@
-# check reactiveFileREader
-# gex = reactive({
-#   inFile = input$user_input
-#   if (is.null(inFile)){
-#     return(NULL)
-#   }
-#   withProgress(message="Read in expression matrix", value=10, {
-#     df = read.csv(inFile$datapath, sep=";", row.names=1, check.names = F)
-#     if (ncol(df) == 0) {
-#       df = read.csv(inFile$datapath, sep=",", row.names=1, check.names = F)
-#     }
-#   })
-#   return(df)
-# })
-
 # data
 gex = reactive({
   if (input$take_example_data == F) {

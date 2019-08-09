@@ -22,7 +22,6 @@ output$measured_df = DT::renderDataTable({
 })
 
 measured_df_filtered = eventReactive(input$measured_df_state, {
-  print(input$measured_df_search_columns)
   s = input$measured_df_search_columns %>% 
     na_if("") %>%
     parse_column_filtering()
@@ -86,7 +85,6 @@ output$histogram_measured = renderPlotly({
       filter(if (is.na(measured_df_filtered()[10])) TRUE else between(cell_viability, as.numeric(measured_df_filtered()[10]), as.numeric(measured_df_filtered()[11])))
     
     if (nrow(data_rug) <= 200) {
-      print("hi2")
       p = ctrp_measured %>%
         ggplot(aes(x=cell_viability)) +
         geom_histogram(color="white") +
