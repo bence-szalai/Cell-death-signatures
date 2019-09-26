@@ -3,7 +3,7 @@
 #### Welcome to CEVIChE (CEll VIability Calculator from gene Expression)
 This app allows to browse matched and predicted cell viaiblity values for the LINCS-L1000 perturbation dataset, and also to predict cell viability for your own gene expression data.
 
-<i class="far fa-comment"></i> designed to interactively explore the results of <a href="https://www.biorxiv.org/content/10.1101/454348v2" target="_blank">*Signatures of cell death and proliferation in perturbation transcriptomics data - from confounding factor to effective prediction*</a>.
+<i class="far fa-comment"></i> designed to interactively explore the results of <a href="https://doi.org/10.1093/nar/gkz805" target="_blank">*Signatures of cell death and proliferation in perturbation transcriptomics data - from confounding factor to effective prediction*</a>.
 
 <i class="fas fa-database"></i> database and model created by Bence Szalai (<a href="mailto:szalai.bence@med.semmelweis-univ.hu" target="_blank"><i class="glyphicon glyphicon-envelope"></i></a>) at the <a href="http://semmelweis.hu/elettan/en/" target="_blank">Department of Physiology</a>, Faculty of Medicine, Semmelwies University.
 
