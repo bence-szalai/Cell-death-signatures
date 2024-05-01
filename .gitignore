@@ -4,6 +4,8 @@ code/.ipynb_checkpoints/cell_death_0_download-checkpoint.ipynb
 *.gct
 !data/Functional/PROGENy.csv
 !data/NCI60/NCI60_CTRP_cell_matching.csv
+!models/achilles.csv
+!models/ctrp.csv
 *.txt
 !data/LINCS/l1000_smiles.txt
 *.gctx
